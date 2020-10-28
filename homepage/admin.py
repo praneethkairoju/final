@@ -7,10 +7,10 @@ from .models import service,client,gallery,blog,comment
 admin.site.site_header = "SDRK Tecnologies Admin Panel"
 
 #services admin 
-class serviceadmin(admin.ModelAdmin):
+class serviceAdmin(admin.ModelAdmin):
     list_display = ('servicename', 'shortlist')
 
-admin.site.register(service,serviceadmin)
+admin.site.register(service,serviceAdmin)
 
 
 #client admin

@@ -47,7 +47,7 @@ class blog(models.Model):
      description = models.TextField()
      author = models.CharField(max_length=20)
      date = models.DateTimeField(auto_now_add=True)
-     shortlist = models.BooleanField(default=False)
+     
      
 
 # comments
