@@ -1,0 +1,1 @@
+web: gunicorn sdrkproject.wsgi --log-file -
