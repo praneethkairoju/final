@@ -1,1 +1,1 @@
-web: gunicorn sdrkproject.wsgi
+web: gunicorn blog.wsgi --log-file -
