@@ -15,7 +15,7 @@ def index(request):
     data={
         "serv":files1,
         "clin":files2,
-        "blog":files3
+        "blog":files3,
     }
     
 
