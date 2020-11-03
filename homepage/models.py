@@ -56,3 +56,13 @@ class comment(models.Model):
      name = models.CharField(max_length=20)
      date = models.DateTimeField(auto_now_add=True)
      comment = models.TextField()
+
+
+class contactform(models.Model):    
+    name = models.CharField(max_length=30)
+    email =models.EmailField() 
+    phone = models.CharField(max_length=10)
+    subject = models.CharField(max_length=60)
+    message = models.TextField()
+
+    

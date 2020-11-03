@@ -1,57 +1,136 @@
 from django.shortcuts import render
-from .models import service, client, gallery,blog
+from .forms import rooba
+from django.views.generic import DetailView
+from .models import service, client, gallery,blog, contactform
+from django.core.mail import send_mail
 
 
 # Create your views here.
+def sendmail(request):
+    send_mail(
+        given_subject , # subject
+        'My name is' + given_name + 'my mobile' + given_phone + given_message , # message
+        given_email, # from email
+        ['praneethkairoju8694@gmail.com'], # to email
+        )
 
-files1 = service.objects.all()
-files2 = client.objects.all()
-files3 = blog.objects.all().order_by('-date')
-
-
-def index(request):    
-       
+def index(request):
     
-    data={
-        "serv":files1,
-        "clin":files2,
-        "blog":files3,
-    }
+    files1 = service.objects.all()
+    files2 = client.objects.all()
+    files3 = blog.objects.all().order_by('-date')
+    files4 = rooba
     
+    if request.method == 'POST':
 
-    return render(request,'index.html', data)
-    
+        given_name = request.POST['name']
+        given_email = request.POST['email']
+        given_phone = request.POST['phone']
+        given_subject = request.POST['subject']
+        given_message = request.POST['message']
+        data = {
+            "serv" : files1,
+            "clin": files2,
+            "blog": files3,
+            "form":files4,
+            "thank" :"Thanks You , We will Respond Soon.."
+                    
+            }
+        
+        send_mail(
+            given_subject , # subject
+            'My name is' +' ' +given_name +' ' +'my mobile' + ' '+ given_phone +'  '+'{' +given_message +'}', # message
+            given_email, # from email
+            ['praneethkairoju8694@gmail.com'], # to email
+            
+        )    
+        return render(request, 'index.html', data)
+    else:
 
-
-
+        data = {
+            "serv" : files1,
+            "clin": files2,
+            "blog": files3,
+            "form": files4,
+                    
+            }
+        return render(request, 'index.html',data)
+          
 def about(request):
-
+    files2 = client.objects.all()
     data ={
         "clin" :files2
     }
     return render(request,'about.html', data)
 
 
-def gallery(request):
-    return render(request,'gallery.html')
+def photos(request):
+    files4 = gallery.objects.all()
+
+    data = {
+        "photos" : files4
+    }
+    return render(request,'gallery.html', data)
 
 
 
-def blog(request):
-    return render(request,'blog.html')
+def blogs(request):
+    files3 = blog.objects.all().order_by('-date')
+
+    data = {
+        "blog":files3
+    }
+    return render(request,'blog.html', data)
 
 
-def service(request):
-    return render(request,'services.html')
+def services(request):
+    files1 = service.objects.all()
+    data ={
+        "serv" :files1
+    }
+    return render(request,'services.html',data)
 
 
-def contact(request):
-    return render(request,'contact.html')
 
+def Contact(request):
+    
+    files4 = rooba
+    
+    if request.method == 'POST':
 
-def blogsingle(request):
-    return render(request, 'blog-single.html')
+        given_name = request.POST['name']
+        given_email = request.POST['email']
+        given_phone = request.POST['phone']
+        given_subject = request.POST['subject']
+        given_message = request.POST['message']
+        data = {
+            "form":files4,
+            "thank" :"Thanks You , We will Respond Soon.."
+                    
+            }
+        
+        send_mail(
+            given_subject , # subject
+            'My name is' +' ' +given_name +' ' +'my mobile' + ' '+ given_phone +'  '+'{' +given_message +'}', # message
+            given_email, # from email
+            ['praneethkairoju8694@gmail.com','akhilmerugoju28@gmail.com'], # to email
+            
+        )    
+        return render(request, 'contact.html', data)
+    else:
 
+        data = {
+            
+            "form": files4,
+                    
+            }
+        return render(request, 'contact.html',data)
+    
+def blogsigle(request):
+    files3 = blog.objects.all().order_by('-date')
 
-def footer(request):
-    return render(request, 'footer.html')
+    data = {
+        "blog":files3
+    }
+    return render(request, 'blog-single.html', data)
+

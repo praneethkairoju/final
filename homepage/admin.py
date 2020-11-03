@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import service,client,gallery,blog,comment
+from .models import service,client,gallery,blog,comment,contactform
 
 # Register your models here.
 
@@ -38,3 +38,4 @@ class commentadmin(admin.ModelAdmin):
 
 admin.site.register(comment,commentadmin)
 
+admin.site.register(contactform)
