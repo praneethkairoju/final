@@ -115,7 +115,7 @@ def Contact(request):
             "form":files4,
             "serv" : files1,
             "thank" :"Thanks You , We will Respond Soon..",
-            "title" : "Contact "
+            "title" : "Contact |"
                     
             }
         
