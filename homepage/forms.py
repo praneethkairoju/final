@@ -20,6 +20,6 @@ class rooba(forms.ModelForm):
             'name' : forms.TextInput(attrs ={'class':'form-control','type':'input', 'placeholder':'Your name','name':'name'}),
             'email' : forms.TextInput(attrs ={'class':'form-control', 'placeholder':'Your Email','name':'email'}),
             'phone' : forms.TextInput(attrs ={'class':'form-control', 'placeholder':'Phone no.','name':'phone'}),
-            'subject' : forms.Select(attrs ={'class':'form-control', 'placeholder':'Select Subject','name':'subject'}, choices=FRUIT_CHOICES ),
+            'subject' : forms.Select(attrs ={'class':'form-control', 'value':'none','name':'subject',}, choices=FRUIT_CHOICES ),
             'message' : forms.Textarea(attrs ={'class':'form-control', 'placeholder':'Message','name':'message'}),
         }

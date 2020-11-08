@@ -30,7 +30,7 @@
   <div class="row block-9">
     <div class="col-md-8">
       <div class="form-group">
-        <form action="{% url 'index'%}" class="appointment-form ftco-animate" method="POST">
+        <form action="{% url 'contact'%}" class="appointment-form ftco-animate" method="POST">
           {% csrf_token %}
           <h2 class="mb-3" >{{thank}}</h2>
           {% if thank %}

@@ -20,7 +20,7 @@
   <div class="row no-gutters">
     {% for i in photos %}
    <div class="col-md-3">
-    <a href="{% url 'index'%}" class="image-popup img gallery ftco-animate d-flex align-items-center justify-content-center" style="background-image: url({{i.images.url}});">
+    <a href="{{i.images.url}}" class="image-popup img gallery ftco-animate d-flex align-items-center justify-content-center" style="background-image: url({{i.images.url}});">
      <span class="overlay"></span>
      <div class="icon d-flex align-items-center justify-content-center">
       <span class="fa fa-search"></span>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>tharun</title>
+  <title>{{title}}SDRK Technologies</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
@@ -57,7 +57,7 @@
  </button>
  <div class="collapse navbar-collapse" id="ftco-nav">
    <ul class="navbar-nav m-auto">
-    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+    <li class="nav-item "><a href="/" class="nav-link">Home</a></li>
     <li class="nav-item"><a href="{% url 'about'%}" class="nav-link">About</a></li>
     <li class="nav-item "><a href="{% url 'service'%}" class="nav-link">Services</a></li>
     <li class="nav-item"><a href="{% url 'gallery'%}" class="nav-link">Gallery</a></li>
@@ -97,11 +97,11 @@
           <div class="ftco-footer-widget">
             <h2 class="ftco-heading-2">Links</h2>
             <ul class="list-unstyled">
-              <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Home</a></li>
-              <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>About Us</a></li>
-              <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Services</a></li>
-              <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Blog</a></li>
-              <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Contact</a></li>
+              <li><a href="/"><span class="fa fa-chevron-right mr-2"></span>Home</a></li>
+              <li><a href="{% url 'about'%}"><span class="fa fa-chevron-right mr-2"></span>About Us</a></li>
+              <li><a href="{% url 'service'%}"><span class="fa fa-chevron-right mr-2"></span>Services</a></li>
+              <li><a href="{% url 'blog'%}"><span class="fa fa-chevron-right mr-2"></span>Blogs</a></li>
+              <li><a href="{% url 'contact'%}"><span class="fa fa-chevron-right mr-2"></span>Contact</a></li>
             </ul>
           </div>
         </div>
@@ -110,10 +110,9 @@
          <div class="ftco-footer-widget">
           <h2 class="ftco-heading-2">Services</h2>
           <ul class="list-unstyled">
-            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Customer Services</a></li>
-            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Prompt Delivery</a></li>
-            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Reliable Equipment</a></li>
-            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>New Heavy Equipment</a></li>
+            {% for i in serv%}
+            <li><a href="{% url 'service'%}"><span class="fa fa-chevron-right mr-2"></span>{{i.servicename}}</a></li>
+            {% endfor %}
           </ul>
         </div>
       </div>
@@ -124,8 +123,8 @@
          <div class="block-23 mb-3">
            <ul>
              <li><span class="fa fa-map-marker mr-3"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-             <li><a href="#"><span class="fa fa-phone mr-3"></span><span class="text">+2 392 3929 210</span></a></li>
-             <li><a href="#"><span class="fa fa-paper-plane mr-3"></span><span class="text">info@yourdomain.com</span></a></li>
+             <li><a href=""><span class="fa fa-phone mr-3"></span><span class="text">+2 392 3929 210</span></a></li>
+             <li><a href=""><span class="fa fa-paper-plane mr-3"></span><span class="text">info@yourdomain.com</span></a></li>
            </ul>
          </div>
        </div>
