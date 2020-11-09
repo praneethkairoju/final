@@ -58,7 +58,7 @@ def about(request):
     data ={
         "clin" :files2,
         "serv" : files1,
-        "title" : "About |"
+        "title" : "About | "
     }
     return render(request,'about.html', data)
 
@@ -70,7 +70,7 @@ def photos(request):
     data = {
         "photos" : files4,
         "serv" : files1,
-        "title" : "Gallery |"
+        "title" : "Gallery | "
     }
     return render(request,'gallery.html', data)
 
@@ -83,7 +83,7 @@ def blogs(request):
     data = {
         "blog":files3,
         "serv" : files1,
-        "title" : "Blogs |"
+        "title" : "Blogs | "
     }
     
 
@@ -94,7 +94,7 @@ def services(request):
     files1 = service.objects.all()
     data ={
         "serv" :files1,
-        "title" : "Services |"
+        "title" : "Services | "
     }
     return render(request,'services.html',data)
 
@@ -115,7 +115,7 @@ def Contact(request):
             "form":files4,
             "serv" : files1,
             "thank" :"Thanks You , We will Respond Soon..",
-            "title" : "Contact |"
+            "title" : "Contact | "
                     
             }
         
@@ -133,7 +133,7 @@ def Contact(request):
             
             "form": files4,
             "serv" : files1,
-            "title" : "Contact |"
+            "title" : "Contact | "
                     
             }
         return render(request, 'contact.html',data)
