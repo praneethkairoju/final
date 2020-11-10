@@ -202,7 +202,7 @@
 						<div class="img" style="background-image: url({{i.images.url}});"></div>
 						<div class="text">
 							<h2>{{i.servicename}}</h2>
-							<p>{{i.description}}</p>
+							<p>{{i.description|slice:":200"}}</p>
 						</div>
 					</div>
 				</div>
@@ -286,7 +286,7 @@
 								</p>
 							</div>
 							<h3 class="heading"><a href="#">{{i.title}}</a></h3>
-							<p>{{i.description}}</p>
+							<p>{{i.description|slice:":300"}}</p>
 							<p><a href="{% url 'blogsingle'%}" class="btn btn-secondary py-2 px-3">Read more</a></p>
 						</div>
 					</div>
