@@ -133,7 +133,7 @@
 						<div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 							<div class="block-18">
 								<div class="text">
-									<strong class="number" data-number="50">0</strong>
+									<strong class="number" data-number="6">0</strong>
 									<span>Years of Experienced</span>
 								</div>
 							</div>
@@ -141,7 +141,7 @@
 						<div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 							<div class="block-18">
 								<div class="text">
-									<strong class="number" data-number="4500">0</strong>
+									<strong class="number" data-number="80">0</strong>
 									<span>Customers Served</span>
 								</div>
 							</div>
@@ -149,15 +149,15 @@
 						<div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 							<div class="block-18">
 								<div class="text">
-									<strong class="number" data-number="300">0</strong>
-									<span>Number of Equipment</span>
+									<strong class="number" data-number="10">0</strong>
+									<span>Number of Services</span>
 								</div>
 							</div>
 						</div>
 						<div class="col-md-6 d-flex justify-content-center counter-wrap ftco-animate">
 							<div class="block-18">
 								<div class="text">
-									<strong class="number" data-number="300">0</strong>
+									<strong class="number" data-number="60">0</strong>
 									<span>Number of Staffs</span>
 								</div>
 							</div>
@@ -199,10 +199,10 @@
 				
 				<div class="col-md-3">
 					<div class="services-wrap">
-						<div class="img" style="background-image: url({{i.images.url}});"></div>
+						<a href="{% url 'service_detail' i.slug  %}"><div class="img" style="background-image: url({{i.images.url}});"></div></a>
 						<div class="text">
-							<h2>{{i.servicename}}</h2>
-							<p>{{i.description|slice:":200"}}</p>
+							<h2>{{i.title}}</h2>
+							<p>{{i.description|slice:":200"}}.....</p>
 						</div>
 					</div>
 				</div>
@@ -280,14 +280,14 @@
 						<div class="text d-block">
 							<div class="meta">
 								<p>
-									<a href="#"><span class="fa fa-calendar mr-2"></span>{{i.date}}</a>
-									<a href="#"><span class="fa fa-user mr-2"></span>{{i.author}}</a>
-									<a href="#" class="meta-chat"><span class="fa fa-comment mr-2"></span> 3</a>
+									<a><span class="fa fa-calendar mr-2"></span>{{i.date}}</a>
+									<a><span class="fa fa-user mr-2"></span>{{i.author}}</a>
+									
 								</p>
 							</div>
-							<h3 class="heading"><a href="#">{{i.title}}</a></h3>
-							<p>{{i.description|slice:":300"}}</p>
-							<p><a href="{% url 'blogsingle'%}" class="btn btn-secondary py-2 px-3">Read more</a></p>
+							<h3 class="heading"><a >{{i.title}}</a></h3>
+							<p>{{i.description|slice:":300"}}....</p>
+							<p><a href=" {% url 'blogsingle' i.slug %} " class="btn btn-secondary py-2 px-3">Read more</a></p>
 						</div>
 					</div>
 					
@@ -302,3 +302,4 @@
 		</div>
 	</section>
 {% endblock %}
+

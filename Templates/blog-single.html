@@ -19,25 +19,56 @@
 <section class="ftco-section">
   <div class="container">
     <div class="row">
-      {% for i in blog %}
+      
       <div class="col-lg-8 ftco-animate">
-        <h2 class="mb-3">{{i.title}}</h2>
+        <h2 class="mb-3">{{blog.title}}</h2>
         
             <p>
-              <a href="#"><span class="fa fa-calendar mr-2"></span>{{i.date}}</a>
-              <a href="#"><span class="fa fa-user mr-2"></span>{{i.author}}</a>
+              <a ><span class="fa fa-calendar mr-2"></span>{{blog.date}}</a>
+              <a><span class="fa fa-user mr-2"></span>{{blog.author}}</a>
             </p>
           
         <p>
-          <img src="{{i.images.url}}" alt="" class="img-fluid" style="height:500px; width:800px; object-fit: cover;">
+          <img src="{{blog.images.url}}" alt="" class="img-fluid" style="height:500px; width:800px; object-fit: cover;">
         </p>
-        <p>{{i.description}} </p>
-        </div><br>
-      {% endfor %}
-    </div>
+        <p>{{blog.description}} </p>
+        </div><br><br>
+    
+   
+
+   <div class="col col-lg-4">
+    
+      <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-muted">List of All Blogs</span>
+        
+      </h4>
+      <ul class="list-group mb-3">
+        
+         {% for i in blogs %}
+          <li class="list-group-item d-flex justify-content-between lh-condensed"><a href="{% url 'blogsingle' i.slug %}">
+            {% if i.title == blog.title%}
+            <div class="text-success">
+            <h6 class="my-0">{{i.title}}</h6>
+            <small><span class="fa fa-calendar mr-2"></span>{{i.date}}<span class="fa fa-user mr-2"></span>{{i.author}} </small>
+          </div>
+          {% else %}
+          <div class="text-muted">
+          <h6 class="my-0">{{i.title}}</h6>
+          <small><span class="fa fa-calendar mr-2"></span>{{i.date}}<span class="fa fa-user mr-2"></span>{{i.author}} </small>
+          </div>
+          {%endif%}</a></li>
+          {% endfor %}
+        
+      </ul>
   </div>
+</div>
+
 </section>
         <!-- .section -->
 
+
+        
 {% endblock %}
+
+
 

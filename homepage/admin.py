@@ -8,9 +8,24 @@ admin.site.site_header = "SDRK Tecnologies Admin Panel"
 
 #services admin 
 class serviceAdmin(admin.ModelAdmin):
-    list_display = ('servicename', 'shortlist')
+    list_display = ('title', 'shortlist')
 
-admin.site.register(service,serviceAdmin)
+    def get_form(self, request, obj=None, **kwargs):
+     #--> Get form 
+        form = super().get_form(request, obj, **kwargs)
+     #--> Add placeholder for field
+       # form.base_fields['slug'].widget.attrs['placeholder'] = "leave blank for default"
+     #--> Return form
+        return form
+
+    def get_readonly_fields(self, request, obj=None):
+        fields = []
+        if obj:
+            fields += ['slug']
+
+        return fields
+
+admin.site.register(service, serviceAdmin)
 
 
 #client admin
@@ -23,6 +38,21 @@ admin.site.register(client,clientadmin)
 class blogadmin(admin.ModelAdmin):
     list_display = ('title', 'date')
     list_filter = ('date',)
+
+    def get_form(self, request, obj=None, **kwargs):
+     #--> Get form 
+        form = super().get_form(request, obj, **kwargs)
+     #--> Add placeholder for field
+      #  form.base_fields['slug'].widget.attrs['placeholder'] = "leave blank for default"
+     #--> Return form
+        return form
+
+    def get_readonly_fields(self, request, obj=None):
+        fields = []
+        if obj:
+            fields += ['slug']
+
+        return fields
 
 admin.site.register(blog,blogadmin)
 
@@ -38,4 +68,3 @@ class commentadmin(admin.ModelAdmin):
 
 admin.site.register(comment,commentadmin)
 
-admin.site.register(contactform)

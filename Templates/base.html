@@ -9,7 +9,7 @@
   
   
 
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <!--<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">-->
 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -30,7 +30,7 @@
    <div class="container">
     <div class="row d-flex align-items-start align-items-center px-3 px-md-0">
      <div class="col-md-4 d-flex mb-2 mb-md-0">
-      <a class="navbar-brand d-flex align-items-center" href="/"><span class="flaticon flaticon-road-roller"></span><span>praneeth <small>Rental Heavy Equipment</small></span></a>
+      <a class="navbar-brand d-flex align-items-center" href="/"><span class="flaticon flaticon-road-roller"></span><span>SDRK Technologies <small> -Place of Tech Solutions</small></span></a>
     </div>
     <div class="col-md-4 d-flex topper mb-md-0 mb-2 align-items-center">
       <div class="icon d-flex justify-content-center align-items-center">
@@ -112,9 +112,11 @@
          <div class="ftco-footer-widget">
           <h2 class="ftco-heading-2">Services</h2>
           <ul class="list-unstyled">
-            {% for i in serv%}
-            <li><a href="{% url 'service'%}"><span class="fa fa-chevron-right mr-2"></span>{{i.servicename}}</a></li>
-            {% endfor %}
+          
+          {% for i in serv %}
+          <li><a href="{% url 'service_detail' i.slug %}"><span class="fa fa-chevron-right mr-2"></span>{{i.title}} </a></li>
+          {% endfor %}
+
           </ul>
         </div>
       </div>
@@ -164,7 +166,6 @@
   <script src="{% static 'js/jquery.timepicker.min.js'%}"></script>
   <script src="{% static 'js/scrollax.min.js'%}"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="{% static 'js/google-map.js'%}"></script>
   
   <script src="{% static 'js/main.js'%}"></script>
   

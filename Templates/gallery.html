@@ -18,7 +18,7 @@
 <section class="ftco-section ftco-no-pt ftco-no-pb">
  <div class="container-fluid px-0">
   <div class="row no-gutters">
-    {% for i in photos %}
+    {% for i in gallery %}
    <div class="col-md-3">
     <a href="{{i.images.url}}" class="image-popup img gallery ftco-animate d-flex align-items-center justify-content-center" style="background-image: url({{i.images.url}});">
      <span class="overlay"></span>
@@ -34,3 +34,4 @@
 
 
 {% endblock%}
+

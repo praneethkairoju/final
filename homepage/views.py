@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from .forms import rooba
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 from .models import service, client, gallery,blog, contactform
 from django.core.mail import send_mail
+
 
 
 # Create your views here.
@@ -51,7 +52,8 @@ def index(request):
                     
             }
         return render(request, 'index.html',data)
-          
+
+# about view    
 def about(request):
     files2 = client.objects.all()
     files1 = service.objects.all()
@@ -62,43 +64,88 @@ def about(request):
     }
     return render(request,'about.html', data)
 
+# gallery view
+class GalleryView(ListView):
+    model = gallery
+    context_object_name = 'gallery' 
+    data = gallery.objects.all().order_by('-date')
+    template_name = 'gallery.html'
 
-def photos(request):
-    files4 = gallery.objects.all()
-    files1 = service.objects.all()
-
-    data = {
-        "photos" : files4,
-        "serv" : files1,
-        "title" : "Gallery | "
-    }
-    return render(request,'gallery.html', data)
+    def get_context_data(self, *args, **kwargs):
+        data = super(GalleryView, self).get_context_data(*args,  **kwargs)
+        data['title'] = 'Gallery | '
+        serv = service.objects.all()
+        data['serv'] = serv
+        return data
 
 
+# blog view
 
-def blogs(request):
-    files3 = blog.objects.all().order_by('-date')[:6]
-    files1 = service.objects.all()
 
-    data = {
-        "blog":files3,
-        "serv" : files1,
-        "title" : "Blogs | "
-    }
+class BlogView(ListView):
+    model = blog
+    context_object_name = 'blogs' 
+    template_name = 'blog.html'
+
+    def get_context_data(self, *args, **kwargs):
+        data = super(BlogView, self).get_context_data(*args,  **kwargs)
+        data['title'] = 'Blogs | '
+        serv = service.objects.all()
+        data['serv'] = serv
+        bloger = blog.objects.all().order_by('-date')
+        data['blogs'] = bloger
+        return data
+
+# blog detail view
+
+class BlogDetailView(DetailView):
+    model = blog
+    template_name = 'blog-single.html'
+    data = blog.objects.all()
+    context_object_name = 'blog'
+
+    def get_context_data(self, *args, **kwargs):
+        data = super(BlogDetailView, self).get_context_data(*args,  **kwargs)
+        data['title'] = 'Blogs | '
+        serv = service.objects.all()
+        data['serv'] = serv
+        blogs = blog.objects.all().order_by('-date')
+        data['blogs'] = blogs
+        return data
+
+# service view
+
+class ServiceView(ListView):
+    model = service
     
+    context_object_name = 'servs'   
+    data = service.objects.all()
+    template_name = 'services.html'  
 
-    return render(request,'blog.html', data)
+    def get_context_data(self, *args, **kwargs):
+        data = super(ServiceView, self).get_context_data(*args, **kwargs)
+        data['title'] = 'Services | '
+        serv = service.objects.all()
+        data['serv'] = serv
+        return data
+
+# service detail view
+
+class Service_detail(DetailView):
+    
+    model = service
+    template_name = 'service_detail.html'
+    context_object_name = 'servs'
+    data = service.objects.all()
+    def get_context_data(self, *args, **kwargs):
+        data = super(Service_detail, self).get_context_data(*args, **kwargs)
+        data['title'] = 'Services | '
+        serv = service.objects.all()
+        data['serv'] = serv
+        return data
 
 
-def services(request):
-    files1 = service.objects.all()
-    data ={
-        "serv" :files1,
-        "title" : "Services | "
-    }
-    return render(request,'services.html',data)
-
-
+# contact view
 
 def Contact(request):
     files1 = service.objects.all()
@@ -137,15 +184,12 @@ def Contact(request):
                     
             }
         return render(request, 'contact.html',data)
-    
-def blogsigle(request):
-    files1 = service.objects.all()
-    files3 = blog.objects.all().order_by('-date')
 
-    data = {
-        "blog":files3,
-        "serv" : files1,
-        "title" : "Blog Details"
-    }
-    return render(request, 'blog-single.html', data)
 
+
+
+
+
+   
+
+   

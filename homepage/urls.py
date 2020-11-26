@@ -1,16 +1,25 @@
 from django.urls import path
-from .views import DetailView
+
 from . import views
+from .views import (
+    ServiceView,
+    Service_detail,
+    BlogView,
+    GalleryView,
+    BlogDetailView,
+    
+
+)
 
 urlpatterns = [
     path('', views.index, name='index'),
     path('about/',views.about, name='about'),
-    path('service/',views.services, name='service'),
-    path('gallery/',views.photos, name='gallery'),
-    path('blog/',views.blogs, name='blog'),
-    path('blogsingle/',views.blogsigle, name='blogsingle'),
+    path('service/',ServiceView.as_view(), name='service'),
+    path('gallery/',GalleryView.as_view(), name='gallery'),
+    path('blog/',BlogView.as_view(), name='blog'),
+    path('blog/<slug:slug>/',BlogDetailView.as_view(), name='blogsingle'),
     path('contact/',views.Contact, name='contact'),
-    #path('form/',ContactView, name='form'),
+    path('service/<slug:slug>/',Service_detail.as_view(), name='service_detail'),
     
     
 ]

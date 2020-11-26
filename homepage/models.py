@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.db.models.signals import pre_save
+from sdrkproject.utils import unique_slug_generator
 # Create your models here.
 
 
@@ -8,8 +9,9 @@ from django.db import models
 # services 
 
 class service(models.Model):
+     title = models.CharField(max_length=30)
      images = models.ImageField(upload_to='pics')
-     servicename = models.CharField(max_length=20)
+     slug = models.SlugField(max_length=250, null=True, blank=True)
      description = models.TextField()
      shortlist = models.BooleanField(default=False)
 
@@ -45,6 +47,7 @@ class blog(models.Model):
      images = models.ImageField(upload_to='pics')
      title = models.CharField(max_length=20)
      description = models.TextField()
+     slug = models.SlugField(max_length=250, null=True, blank=True)
      author = models.CharField(max_length=20)
      date = models.DateTimeField(auto_now_add=True)
      
@@ -66,3 +69,10 @@ class contactform(models.Model):
     message = models.TextField()
 
     
+def slug_generator(sender ,instance, *args, **kwargs):
+     if not instance.slug:
+          instance.slug = unique_slug_generator(instance)
+
+
+pre_save.connect(slug_generator, sender= service)
+pre_save.connect(slug_generator, sender= blog)
