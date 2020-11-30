@@ -47,29 +47,6 @@
 </div>
 </div>
 
-<div class="row mt-5">
-  <div class="col text-center">
-    <div class="block-27">
-      <ul>
-        <div class="pagination">
-          <div class="step-links">
-              {% if blog.has_previous %}
-        <li><a href="?page=1">&laquo; first</a></li>
-        <li class="active"><a href="?page={{ blog.previous_page_number }}">previous</a></li>
-        {% endif %}
-        <li><span class="current">
-          Page {{ blog.number }} of {{ blog.paginator.num_pages }}.
-      </span></li>
-      {% if blog.has_next %}
-        <li><a href="?page={{ blog.next_page_number }}">next</a></li>
-        <li><a href="?page={{ blog.paginator.num_pages }}">last &raquo;</a></li>
-        {% endif %}
-       </div>
-      </div>
-      </ul>
-    </div>
-  </div>
-</div>
 </section>
 {% endblock %}
 

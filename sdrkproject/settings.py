@@ -16,6 +16,7 @@ import django_heroku
 import dj_database_url
 from decouple import config
 import socket
+from whitenoise.storage import CompressedManifestStaticFilesStorage
 
 
 
@@ -31,9 +32,8 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-#TEMPLATE_DEBUG = DEBUG
-#DEBUG_PROPAGATE_EXCEPTIONS = True
-ALLOWED_HOSTS = ["*"]
+
+ALLOWED_HOSTS = ["localhost","127.0.0.1","sdrk.herokuapp.com"]
 
 
 # Application definition
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+   # 'whitenoise.runserver_nostatic',
     'homepage',
     
 ]
@@ -140,8 +141,10 @@ STATICFILES_DIRS= [
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+WHITENOISE_MANIFEST_STRICT = False
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -156,11 +159,47 @@ EMAIL_USE_TLS = True
 
 django_heroku.settings(locals())
 
-#CSRF_COOKIE_SECURE = True
-#SESSION_COOKIE_SECURE = True
-#SECURE_SSL_REDIRECT = True
-#SECURE_HSTS_SECONDS = 
 
 
 
 
+# logging
+
+
+LOGGING = {
+'version': 1,
+'disable_existing_loggers': False,
+'formatters': {
+    'verbose': {
+        'format': ('%(asctime)s [%(process)d] [%(levelname)s] '
+                   'pathname=%(pathname)s lineno=%(lineno)s '
+                   'funcname=%(funcName)s %(message)s'),
+        'datefmt': '%Y-%m-%d %H:%M:%S'
+    },
+    'simple': {
+        'format': '%(levelname)s %(message)s'
+    }
+},
+'handlers': {
+    'null': {
+        'level': 'DEBUG',
+        'class': 'logging.NullHandler',
+    },
+    'console': {
+        'level': 'INFO',
+        'class': 'logging.StreamHandler',
+        'formatter': 'verbose'
+    }
+},
+'loggers': {
+    'django': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+        'propagate': True,
+    },
+    'django.request': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+        'propagate': False,
+    },
+}}
